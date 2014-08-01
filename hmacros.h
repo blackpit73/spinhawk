@@ -153,7 +153,9 @@
   #define    stat               stat64
 #else // !defined(_LFS_LARGEFILE) && !defined(_LFS64_LARGEFILE) && (!defined(SIZEOF_OFF_T) || SIZEOF_OFF_T <= 4)
   /* No 64-bit Large File Support at all */
-  #warning Large File Support missing
+  #ifndef __ANDROID__ /* we know that for android and don't need that warnings.. */
+    #warning Large File Support missing
+  #endif
 #endif
 
 /*-------------------------------------------------------------------*/

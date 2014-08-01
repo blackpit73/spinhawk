@@ -201,6 +201,15 @@
   #define  CLK_TCK       CLOCKS_PER_SEC
 #endif
 
+// blackpit73: android does not define S_IREAD/S_IWRITE/S_IEXEC
+// as these are obsoleted by S_IRUSR/S_IWUSR/S_IXUSR,
+// cf. https://code.google.com/p/android/issues/detail?id=19710
+#ifndef S_IREAD
+#define S_IREAD S_IRUSR
+#define S_IWRITE S_IWUSR
+#define S_IEXEC S_IXUSR
+#endif
+
 /*-------------------------------------------------------------------*/
 /* Console tn3270/telnet session TCP "Keep-Alive" values...          */
 /*-------------------------------------------------------------------*/

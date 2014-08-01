@@ -332,6 +332,38 @@
 
 
 /*-------------------------------------------------------------------*/
+/* Android options...                                                */
+/*-------------------------------------------------------------------*/
+#elif defined(__ANDROID__)                /* Android options         */
+
+#define DLL_IMPORT   extern
+#define DLL_EXPORT
+
+#define TUNTAP_IFF_RUNNING_NEEDED       /* Needed by tuntap driver?? */
+
+#undef  OPTION_SCSI_TAPE                /* SCSI tape support         */
+#undef  OPTION_SCSI_ERASE_TAPE          /* (NOT supported)           */
+#undef  OPTION_SCSI_ERASE_GAP           /* (NOT supported)           */
+#undef  OPTION_FBA_BLKDEVICE            /* FBA block device support  */
+
+#define MAX_DEVICE_THREADS          0   /* (0 == unlimited)          */
+#define MIXEDCASE_FILENAMES_ARE_UNIQUE  /* ("Foo" and "fOo" unique)  */
+
+#define DEFAULT_HERCPRIO    0
+#define DEFAULT_TOD_PRIO  -20
+#define DEFAULT_CPU_PRIO   15
+#define DEFAULT_DEV_PRIO    8
+
+#if defined( HAVE_FORK )
+  #define HOW_TO_IMPLEMENT_SH_COMMAND     USE_FORK_API_FOR_SH_COMMAND
+#else
+  #define HOW_TO_IMPLEMENT_SH_COMMAND     USE_ANSI_SYSTEM_API_FOR_SH_COMMAND
+#endif
+#define SET_CONSOLE_CURSOR_SHAPE_METHOD   CURSOR_SHAPE_VIA_SPECIAL_LINUX_ESCAPE
+#undef  OPTION_EXTCURS                  /* Normal cursor handling    */
+
+
+/*-------------------------------------------------------------------*/
 /* Hard-coded OTHER (DEFAULT) host-specific features and options...  */
 /*-------------------------------------------------------------------*/
 #else                                   /* "Other platform" options  */
